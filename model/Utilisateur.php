@@ -13,6 +13,7 @@ class Utilisateur{
     public $email;
     public $password;
     public $nbrMasque;
+    public $id_identifiant;
 
     public static function getAll() {
         $dbh = Dao::openDatabase();
@@ -55,17 +56,6 @@ class Utilisateur{
     public static function findById(int $id){
         $dbh = Dao::openDatabase();
         $query = "SELECT * FROM `utilisateur` WHERE `id` = :id;";
-        $sth = $dbh->prepare($query);
-        $sth->bindParam(":id", $id);
-        $sth->execute();
-        $sth->setFetchMode(PDO::FETCH_CLASS, "Valarep\\model\\Utilisateur");
-        $item = $sth->fetch();
-        Dao::closeDatabase();
-        return $item;
-    }
-    public static function findCommandeById(int $id){
-        $dbh = Dao::openDatabase();
-        $query = "SELECT * FROM `commande` WHERE `id_utilisateur` = :id;";
         $sth = $dbh->prepare($query);
         $sth->bindParam(":id", $id);
         $sth->execute();

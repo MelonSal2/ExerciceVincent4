@@ -26,7 +26,6 @@ class UtilisateurController{
 
     public static function profilUser($page, int $id){
         $user = Utilisateur::findById($id);
-        $commandeUser = Utilisateur::findCommandeById($id);
         View::setTemplate('profil');
         View::bindVariable("user",$user);
         View::bindVariable("page",$page);
